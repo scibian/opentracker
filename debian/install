@@ -1,0 +1,4 @@
+opentracker			usr/bin
+opentracker.debug		usr/bin
+opentracker.conf.sample		usr/share/doc/opentracker
+sync_daemon.pl			usr/share/opentracker

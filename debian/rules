@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+WANT_FEATURES=WANT_SYNC_LIVE WANT_SYSLOGS WANT_RESTRICT_STATS WANT_COMPRESSION_GZIP
+
+override_dh_auto_configure:
+	cp Makefile Makefile.orig
+	for feature in $(WANT_FEATURES); do			\
+		sed -i "s/^#\(.*$$feature\)/\1/" Makefile; 	\
+	done
+
+override_dh_auto_clean:
+	! test -f Makefile.orig || mv Makefile.orig Makefile
+	$(MAKE) clean
+
+override_dh_auto_strip:
+	dh_strip -Xopentracker.debug
+
+%:
+	dh $@

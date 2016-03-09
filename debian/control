@@ -1,0 +1,20 @@
+Source: opentracker
+Priority: optional
+Maintainer: Mehdi Dogguy <mehdi.dogguy@edf.fr>
+Build-Depends:
+ debhelper (>= 8),
+ zlib1g-dev,
+ libowfat-dev
+Standards-Version: 3.9.3
+Section: net
+
+Package: opentracker
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Description: bittorrent tracker
+ This package contains an open and free bittorrent tracker project.
+ It aims for minimal resource usage and is intended to run at your
+ wlan router. Currently it is deployed as an open and free tracker
+ instance.
