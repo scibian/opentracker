@@ -1,12 +1,16 @@
 Source: opentracker
+Section: scibian
 Priority: optional
-Maintainer: Mehdi Dogguy <mehdi.dogguy@edf.fr>
+Maintainer: Scibian Project <packaging@scibian.org>
 Build-Depends:
- debhelper (>= 8),
+ debhelper (>= 9),
  zlib1g-dev,
  libowfat-dev
-Standards-Version: 3.9.3
-Section: net
+Standards-Version: 3.9.6
+Homepage: http://erdgeist.org/arts/software/opentracker
+Vcs-Browser: https://github.com/scibian/opentracker
+Vcs-Git: https://github.com/scibian/opentracker.git
+
 
 Package: opentracker
 Architecture: any
