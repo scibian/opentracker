@@ -56,7 +56,7 @@ static unsigned long long ot_full_scrape_count = 0;
 static unsigned long long ot_full_scrape_request_count = 0;
 static unsigned long long ot_full_scrape_size = 0;
 static unsigned long long ot_failed_request_counts[CODE_HTTPERROR_COUNT];
-static char *             ot_failed_request_names[] = { "302 Redirect", "400 Parse Error", "400 Invalid Parameter", "400 Invalid Parameter (compact=0)", "400 Not Modest", "403 Access Denied", "404 Not found", "500 Internal Server Error" };
+static char *             ot_failed_request_names[] = { "302 Redirect", "400 Parse Error", "400 Invalid Parameter", "400 Invalid Parameter (compact=0)", "400 Not Modest", "402 Payment Required", "403 Access Denied", "404 Not found", "500 Internal Server Error" };
 static unsigned long long ot_renewed[OT_PEER_TIMEOUT];
 static unsigned long long ot_overall_sync_count;
 static unsigned long long ot_overall_stall_count;
@@ -538,7 +538,7 @@ static size_t stats_return_everything( char * reply ) {
   r += sprintf( r, "  <seeds>\n    <count>%llu</count>\n  </seeds>\n", stats.seed_count );
   r += sprintf( r, "  <completed>\n    <count>%llu</count>\n  </completed>\n", ot_overall_completed );
   r += sprintf( r, "  <connections>\n" );
-  r += sprintf( r, "    <tcp>\n      <accept>%llu</accept>\n      <announce>%llu</announce>\n      <scrape>%llu</scrape>\n    </tcp>\n", ot_overall_tcp_connections, ot_overall_tcp_successfulannounces, ot_overall_udp_successfulscrapes );
+  r += sprintf( r, "    <tcp>\n      <accept>%llu</accept>\n      <announce>%llu</announce>\n      <scrape>%llu</scrape>\n    </tcp>\n", ot_overall_tcp_connections, ot_overall_tcp_successfulannounces, ot_overall_tcp_successfulscrapes );
   r += sprintf( r, "    <udp>\n      <overall>%llu</overall>\n      <connect>%llu</connect>\n      <announce>%llu</announce>\n      <scrape>%llu</scrape>\n      <missmatch>%llu</missmatch>\n    </udp>\n", ot_overall_udp_connections, ot_overall_udp_connects, ot_overall_udp_successfulannounces, ot_overall_udp_successfulscrapes, ot_overall_udp_connectionidmissmatches );
   r += sprintf( r, "    <livesync>\n      <count>%llu</count>\n    </livesync>\n", ot_overall_sync_count );
   r += sprintf( r, "  </connections>\n" );
@@ -679,6 +679,7 @@ void stats_issue_event( ot_status_event event, PROTO_FLAG proto, uintptr_t event
       break;
     case EVENT_SCRAPE:
       if( proto == FLAG_TCP ) ot_overall_tcp_successfulscrapes++; else ot_overall_udp_successfulscrapes++;
+      break;
     case EVENT_FULLSCRAPE:
       ot_full_scrape_count++;
       ot_full_scrape_size += event_data;

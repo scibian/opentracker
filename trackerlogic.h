@@ -3,8 +3,8 @@
 
    $id$ */
 
-#ifndef __OT_TRACKERLOGIC_H__
-#define __OT_TRACKERLOGIC_H__
+#ifndef OT_TRACKERLOGIC_H__
+#define OT_TRACKERLOGIC_H__
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -45,7 +45,7 @@ typedef struct { ot_ip6 address; int bits; }
 
 /* Number of tracker admin ip addresses allowed */
 #define OT_ADMINIP_MAX 64
-#define OT_MAX_THREADS 16
+#define OT_MAX_THREADS 64
 
 #define OT_PEER_TIMEOUT 45
 
